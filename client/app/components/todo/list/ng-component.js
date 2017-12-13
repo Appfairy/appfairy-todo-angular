@@ -5,9 +5,9 @@ List.component('afTodoListView', {
     <span af-plug="add-btn" ng-click="onAddBtnClick()"></span>
     <span af-plug="todo-input" ng-keydown="onTodoInputKeyDown($event)"></span>
 
-    <!-- TODO: Add transitions -->
     <ul af-plug="todos">
       <li ng-repeat="todo in todos"
+          class="todo"
           af-scope="todo"
           data-id="{{ todo.id }}"
           data-value="{{ todo.value }}"></li>

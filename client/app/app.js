@@ -1,7 +1,7 @@
 import Angular from 'angular';
-import Components from './components';
 import 'normalize.css';
 import './app.css';
+import './components';
 
 const AppModule = Angular.module('app', []);
 

@@ -2,10 +2,11 @@ import Angular from 'angular';
 import Appfairy from 'appfairy';
 import { css, html } from '~/common/todo/list';
 import List from '.';
+import animations from './animations.scss';
 
 class TodoListView extends Appfairy.View(HTMLElement) {
   initializeStyle(style) {
-    style.innerHTML = css;
+    style.innerHTML = css + animations;
   }
 
   initializeView(view) {
