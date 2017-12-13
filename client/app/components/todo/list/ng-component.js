@@ -1,27 +1,28 @@
-import TodoListModule from '.';
+import List from '.';
 
-TodoListModule.component('todo-list', {
+List.component('afTodoListView', {
   template: `
-    <af-todo-list-view>
-      <span af-plug="add-btn" ng-click="onAddBtnClick($event)" />
-      <span af-plug="todo-input" ng-keydown="onTodoInputKeyDown" />
+    <span af-plug="add-btn" ng-click="onAddBtnClick()"></span>
+    <span af-plug="todo-input" ng-keydown="onTodoInputKeyDown($event)"></span>
 
-      <!-- TODO: Add transitions -->
+    <!-- TODO: Add transitions -->
+    <ul af-plug="todos">
       <li ng-repeat="todo in todos"
           af-scope="todo"
           data-id="{{ todo.id }}"
-          todo-value="{{ todo.value }}"></li>
-    </af-todo-list-view>
+          data-value="{{ todo.value }}"></li>
+    </ul>
   `,
-  controller: function ($rootScope, $scope, $element) {
-    const todoInput = $element.querySelector('[af-plug="todo-input"]');
+  controller: function ($scope, $element) {
+    const todoInput = $element[0].querySelector('[af-plug="todo-input"]');
+    let todoIndex = 0;
 
     Object.assign($scope, {
       todos: [],
 
       addTodo(todo) {
         this.todos.push({
-          id: globalTodoId++,
+          id: todoIndex++,
           value: todo,
         });
       },
@@ -36,11 +37,11 @@ TodoListModule.component('todo-list', {
       },
 
       submitTodoInput() {
-        const value = todoInput.value;
+        const value = todoInput.target.value;
 
         if (!value) return;
 
-        todoInput.value = '';
+        todoInput.target.value = '';
         this.addTodo(value);
       },
 
@@ -55,12 +56,6 @@ TodoListModule.component('todo-list', {
 
         this.submitTodoInput();
       },
-    });
-
-    Object.assign($rootScope, {
-      removeTodo(id) {
-        $scope.removeTodo(id);
-      }
     });
   }
 });

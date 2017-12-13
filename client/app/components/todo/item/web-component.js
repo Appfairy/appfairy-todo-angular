@@ -1,7 +1,7 @@
 import Angular from 'angular';
 import Appfairy from 'appfairy';
 import { css, html } from '~/common/todo/item';
-import TodoItemModule from '.';
+import Item from '.';
 
 class TodoItemView extends Appfairy.View(HTMLElement) {
   initializeStyle(style) {
@@ -11,6 +11,10 @@ class TodoItemView extends Appfairy.View(HTMLElement) {
   initializeView(view) {
     view.innerHTML = html;
   }
+
+  findNgScope() {
+    return Angular.element(this.shadowRoot).scope();
+  }
 }
 
 Appfairy.View.define('todo-item', TodoItemView);
@@ -18,30 +22,30 @@ Appfairy.View.define('todo-item', TodoItemView);
 class TodoItemElement extends Appfairy.Element(HTMLElement) {
   get options() {
     return {
-      dependent: true
+      dependent: true,
+      useMountPoint: false
     };
   }
 
   render(container, data) {
-    if (this.created) return this.setData(data);
+    if (this.created) return this._setData(data);
 
-    const component = document.createElement('todo-item');
+    const component = document.createElement('af-todo-item-view');
+
+    Angular.bootstrap(component, [Item.name]);
+
     container.appendChild(component);
 
-    TodoItemModule.run(['$rootScope', ($rootScope) => {
-      this.$rootScope = $rootScope;
+    this.$scope = this.view.findNgScope();
 
-      this.setData(data);
-    }]);
-
-    Angular.bootstrap(container, [TodoItemModule.name]);
+    this._setData(data);
   }
 
-  setData(data) {
-    Object.assign(this.$rootScope, data);
+  _setData(data) {
+    Object.assign(this.$scope, data);
 
-    if (!this.$rootScope.$$phase) {
-      this.$rootScope.$digest();
+    if (!this.$scope.$$phase) {
+      this.$scope.$digest();
     }
   }
 }

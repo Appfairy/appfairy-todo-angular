@@ -1,14 +1,12 @@
-import TodoItemModule from '.';
+import Item from '.';
 
-TodoItemModule.component('todo-list', {
+Item.component('afTodoItemView', {
   template: `
-    <af-todo-item-view>
-      <span af-plug="check-box" ng-click="toggleCheck()">
-        <span af-plug="check" ng-show="checked" />
-      </span>
-      <span af-plug="todo" ng-style="todoStyle">{{ value }}</span>
-      <span af-plug="rm-btn" ng-click="removeTodo(id)" />
-    </af-todo-item-view>
+    <span af-plug="check-box" ng-click="toggleCheck()">
+      <span af-plug="check" ng-show="checked"></span>
+    </span>
+    <span af-plug="todo" ng-style="todoStyle">{{ value }}</span>
+    <span af-plug="rm-btn" ng-click="removeTodo(id)"></span>
   `,
   controller: function ($scope) {
     Object.assign($scope, {
@@ -26,4 +24,4 @@ TodoItemModule.component('todo-list', {
   }
 });
 
-export default TodoItemModule;
+export default Item;
