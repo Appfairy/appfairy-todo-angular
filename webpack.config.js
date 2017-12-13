@@ -5,11 +5,16 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   devtool: 'source-map',
   entry: {},
+  resolve: {
+    alias: {
+      '~': path.resolve(__dirname, 'client/app')
+    }
+  },
   module: {
     loaders: [
        { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
        { test: /\.html$/, loader: 'raw' },
-       { test: /\.(scss|sass)$/, loader: 'style!css!sass' },
+       { test: /\.(scss|sass)$/, loader: 'to-string!css!sass' },
        { test: /\.css$/, loader: 'style!css' }
     ]
   },

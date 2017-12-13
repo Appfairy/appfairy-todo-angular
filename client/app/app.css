@@ -1,3 +1,8 @@
-app {
+html, body, #root {
+  height: 100%;
+  font: icon;
+}
+
+body {
   background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
 }

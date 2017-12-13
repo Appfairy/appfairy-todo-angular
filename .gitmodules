@@ -1,0 +1,3 @@
+[submodule "client/app/common"]
+	path = client/app/common
+	url = git@github.com:Appfairy/appfairy-todo-common.git

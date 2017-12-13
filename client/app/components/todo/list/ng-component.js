@@ -62,5 +62,5 @@ TodoListModule.component('todo-list', {
         $scope.removeTodo(id);
       }
     });
-  }]
+  }
 });

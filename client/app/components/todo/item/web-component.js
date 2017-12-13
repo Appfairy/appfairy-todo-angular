@@ -25,13 +25,16 @@ class TodoItemElement extends Appfairy.Element(HTMLElement) {
   render(container, data) {
     if (this.created) return this.setData(data);
 
+    const component = document.createElement('todo-item');
+    container.appendChild(component);
+
     TodoItemModule.run(['$rootScope', ($rootScope) => {
       this.$rootScope = $rootScope;
 
       this.setData(data);
     }]);
 
-    Angular.bootstrap(container, [TodoItemModule]);
+    Angular.bootstrap(container, [TodoItemModule.name]);
   }
 
   setData(data) {
@@ -43,4 +46,4 @@ class TodoItemElement extends Appfairy.Element(HTMLElement) {
   }
 }
 
-Appfairy.Element.define('todo-list', TodoItemElement);
+Appfairy.Element.define('todo-item', TodoItemElement);

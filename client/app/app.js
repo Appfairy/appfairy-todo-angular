@@ -9,4 +9,4 @@ AppModule.component('app', {
   template: '<af-todo-list></<af-todo-list>'
 });
 
-Angular.bootstrap(document, [AppModule]);
+Angular.bootstrap(document, [AppModule.name]);
