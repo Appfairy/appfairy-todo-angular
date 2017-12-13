@@ -31,6 +31,7 @@ class TodoListElement extends Appfairy.Element(HTMLElement) {
       todo: {
         removeTodo: (id) => {
           this.$scope.removeTodo(id);
+          this.$scope.$digest();
         }
       }
     };
@@ -53,9 +54,7 @@ class TodoListElement extends Appfairy.Element(HTMLElement) {
   _setData(data) {
     Object.assign(this.$scope, data);
 
-    if (!this.$scope.$$phase) {
-      this.$scope.$digest();
-    }
+    this.$scope.$digest();
   }
 }
 

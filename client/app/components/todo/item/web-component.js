@@ -44,9 +44,7 @@ class TodoItemElement extends Appfairy.Element(HTMLElement) {
   _setData(data) {
     Object.assign(this.$scope, data);
 
-    if (!this.$scope.$$phase) {
-      this.$scope.$digest();
-    }
+    this.$scope.$digest();
   }
 }
 
