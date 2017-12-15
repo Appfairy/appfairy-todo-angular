@@ -1,24 +1,7 @@
+import List from '.';
 import Angular from 'angular';
 import Appfairy from 'appfairy';
-import { css, html } from '~/common/todo/list';
-import List from '.';
-import animations from './animations.scss';
-
-class TodoListView extends Appfairy.View(HTMLElement) {
-  initializeStyle(style) {
-    style.innerHTML = css + animations;
-  }
-
-  initializeView(view) {
-    view.innerHTML = html;
-  }
-
-  findNgScope() {
-    return Angular.element(this.shadowRoot).scope();
-  }
-}
-
-Appfairy.View.define('todo-list', TodoListView);
+import '~/common/todo/list';
 
 class TodoListElement extends Appfairy.Element(HTMLElement) {
   get options() {
@@ -47,7 +30,7 @@ class TodoListElement extends Appfairy.Element(HTMLElement) {
 
     container.appendChild(component);
 
-    this.$scope = this.view.findNgScope();
+    this.$scope = Angular.element(this.view.shadowRoot).scope();
 
     this._setData(data);
   }

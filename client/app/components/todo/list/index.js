@@ -1,7 +1,6 @@
 import Angular from 'angular';
-import AngularAnimate from 'angular-animate';
 
-export default Angular.module('app.todo-list', [AngularAnimate]);
+export default Angular.module('app.todo-list', []);
 
 require('./ng-component');
 require('./web-component');
