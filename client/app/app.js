@@ -1,7 +1,13 @@
-import Angular from 'angular';
 import 'normalize.css';
 import './app.css';
 import './components';
+
+import Angular from 'angular';
+import Appfairy from 'appfairy';
+
+Appfairy.Config.defaultOptions = {
+  useMountPoint: false
+};
 
 const AppModule = Angular.module('app', []);
 

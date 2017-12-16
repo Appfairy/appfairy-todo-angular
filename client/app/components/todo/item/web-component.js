@@ -1,13 +1,13 @@
+import '~/common/todo/item';
+
 import Item from '.';
 import Angular from 'angular';
 import Appfairy from 'appfairy';
-import '~/common/todo/item';
 
 class TodoItemElement extends Appfairy.Element(HTMLElement) {
   get options() {
     return {
-      dependent: true,
-      useMountPoint: false
+      dependent: true
     };
   }
 

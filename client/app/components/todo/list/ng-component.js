@@ -9,8 +9,7 @@ List.component('afTodoListView', {
       <li ng-repeat="todo in todos"
           class="todo"
           af-scope="todo"
-          data-id="{{ todo.id }}"
-          data-value="{{ todo.value }}"></li>
+          data-todo="{{ todo | json }}"></li>
     </ul>
   `,
   controller: function ($scope, $element) {

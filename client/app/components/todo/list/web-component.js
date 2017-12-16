@@ -1,15 +1,10 @@
+import '~/common/todo/list';
+
 import List from '.';
 import Angular from 'angular';
 import Appfairy from 'appfairy';
-import '~/common/todo/list';
 
 class TodoListElement extends Appfairy.Element(HTMLElement) {
-  get options() {
-    return {
-      useMountPoint: false
-    };
-  }
-
   get childScopes() {
     return {
       todo: {
