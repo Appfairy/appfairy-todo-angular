@@ -5,7 +5,7 @@ import './components';
 import Angular from 'angular';
 import Appfairy from 'appfairy';
 
-Appfairy.Config.defaultOptions = {
+Appfairy.config.defaultOptions = {
   useMountPoint: false
 };
 
