@@ -8,8 +8,8 @@ List.component('afTodoListView', {
     <ul af-plug="todos">
       <li ng-repeat="todo in todos"
           class="todo"
-          af-scope="todo"
-          data-todo="{{ todo | json }}"></li>
+          data-todo="{{ todo | hash:this }}"
+          data-remove-todo="{{ removeTodo | hash:this }}"></li>
     </ul>
   `,
   controller: function ($scope, $element) {
@@ -20,19 +20,21 @@ List.component('afTodoListView', {
       todos: [],
 
       addTodo(todo) {
-        this.todos.push({
+        $scope.todos.push({
           id: todoIndex++,
           value: todo,
         });
       },
 
       removeTodo(id) {
-        const todo = this.todos.find(todo => todo.id == id);
+        const todo = $scope.todos.find(todo => todo.id == id);
 
         if (!todo) return;
 
-        const index = this.todos.indexOf(todo);
-        this.todos.splice(index, 1);
+        const index = $scope.todos.indexOf(todo);
+
+        $scope.todos.splice(index, 1);
+        $scope.$digest();
       },
 
       submitTodoInput() {
@@ -41,11 +43,11 @@ List.component('afTodoListView', {
         if (!value) return;
 
         todoInput.target.value = '';
-        this.addTodo(value);
+        $scope.addTodo(value);
       },
 
       onAddBtnClick() {
-        this.submitTodoInput();
+        $scope.submitTodoInput();
       },
 
       onTodoInputKeyDown(e) {
@@ -53,7 +55,7 @@ List.component('afTodoListView', {
           return;
         }
 
-        this.submitTodoInput();
+        $scope.submitTodoInput();
       },
     });
   }

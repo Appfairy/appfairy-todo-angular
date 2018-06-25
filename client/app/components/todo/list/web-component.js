@@ -5,17 +5,6 @@ import Angular from 'angular';
 import Appfairy from 'appfairy';
 
 class TodoListElement extends Appfairy.Element(HTMLElement) {
-  get childScopes() {
-    return {
-      todo: {
-        removeTodo: (id) => {
-          this.$scope.removeTodo(id);
-          this.$scope.$digest();
-        }
-      }
-    };
-  }
-
   render(container, data) {
     if (this.created) return this._setData(data);
 

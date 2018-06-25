@@ -5,12 +5,6 @@ import Angular from 'angular';
 import Appfairy from 'appfairy';
 
 class TodoItemElement extends Appfairy.Element(HTMLElement) {
-  get options() {
-    return {
-      dependent: true
-    };
-  }
-
   render(container, data) {
     if (this.created) return this._setData(data);
 

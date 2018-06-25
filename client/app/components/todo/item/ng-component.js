@@ -14,10 +14,10 @@ Item.component('afTodoItemView', {
       todoStyle: {},
 
       toggleCheck() {
-        this.checked = !this.checked;
+        $scope.checked = !$scope.checked;
 
-        this.todoStyle = {
-          textDecoration: this.checked ? 'line-through' : ''
+        $scope.todoStyle = {
+          textDecoration: $scope.checked ? 'line-through' : ''
         };
       }
     });
