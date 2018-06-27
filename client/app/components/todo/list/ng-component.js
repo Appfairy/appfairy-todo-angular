@@ -8,8 +8,8 @@ List.component('afTodoListView', {
     <ul af-plug="todos">
       <li ng-repeat="todo in todos"
           class="todo"
-          data-todo="{{ todo | hash:this }}"
-          data-remove-todo="{{ removeTodo | hash:this }}"></li>
+          data-todo="{{ todo | hash }}"
+          data-remove-todo="{{ removeTodo | hash }}"></li>
     </ul>
   `,
   controller: function ($scope, $element) {

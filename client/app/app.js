@@ -12,25 +12,8 @@ Appfairy.config.defaultOptions = {
 const AppModule = Angular.module('app', []);
 
 AppModule.filter('hash', () => {
-  const accessor = Symbol('hash');
-
-  return (obj, $scope) => {
-    const refs = $scope[accessor] = $scope[accessor] || new Map();
-    let ref = refs.get(obj);
-
-    if (!ref) {
-      ref = new Appfairy.Reference(obj, true);
-      refs.set(obj, ref);
-
-      $scope.$on('$destroy', () => {
-        ref.dispose();
-        refs.delete(obj);
-      }, 0, false);
-    }
-
-    return ref;
-  };
-})
+  return value => new Appfairy.Reference(value);
+});
 
 AppModule.component('app', {
   template: '<af-todo-list></<af-todo-list>'
